@@ -1,0 +1,18 @@
+sudo apt install openjdk-8-jdk
+java -version
+
+apt install mysql-server
+sudo mysql
+uninstall plugin validate_password;
+CREATE USER 'user'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';
+exit
+mysql -u user -p
+create database spring_batch
+
+obter link do spring
+mkdir Tools
+cd Tools
+curl <LINK> --output stsx.x.x.tar.gz
+tar -xf stsx.x.x.tar.gz
+nano ~/local/share/applications/sts.desktop

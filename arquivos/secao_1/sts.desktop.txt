@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=4.6.0
+Name=STS
+Comment=Spring Tool Suite 4
+Icon=/home/giuliana/Tools/sts-4.6.0.RELEASE/icon.xpm
+Exec=/home/giuliana/Tools/sts-4.6.0.RELEASE/SpringToolSuite4
+Terminal=false
+StartupNotify=false
+Categories=Development
