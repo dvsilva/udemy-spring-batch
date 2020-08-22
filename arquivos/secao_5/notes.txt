@@ -1,0 +1,68 @@
+implementações chunk
+
+itemprocessor e itemwriter
+itemreader -> leitores do spring batch atraves do metodo read
+
+arquivos flat -> arquivos que possuem dados não estruturados
+não tem formato e significado
+
+FlatFileItemReader 
+LineMapper -> significado aos dados
+LineTokenizer -> Obtém tokens da linha
+FieldSetMapper -> Mapeia tokens em objeto de domínio
+
+Tipo largura fixa (numero fixo de colunas e tamanho)
+
+configuração do arquivo como arguments -> arquivoClientes=file:files/clientes.txt
+
+reestartar o chunck do ponto que parou
+retirar //.incrementer(new RunIdIncrementer())
+
+select * from BATCH_STEP_EXECUTION_CONTEXT;
+...read.count":1 // quantidade de registros lidos
+
+se rodar sem o erro ele processa após onde parou
+
+se aumentar o .<Cliente, Cliente>chunk(4)
+não chega a comitar a transação no banco pois só tem 3 registros lidos e da erro antes
+por isso nao continua após o primeiro registro
+só pega chunks concluidos, os parcialmente executados serão reprocessados
+
+Tipo delimitado (caracter limitador ",")
+Multiplos formatods (varias linhas clientes e transações) -> MultiResourceItemReader
+
+Agregação de transações nos clientes
+delegate -> utilizar objeto e delegar a execução de rotina para ele
+select * from BATCH_STEP_EXECUTION; -> retorna apenas 3 itens lidos pois só contabiliza os 3 clientes
+
+leitura de arquivo xml e json
+https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#StaxEventItemReader
+https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#JsonItemReader
+
+leitura em banco de dados
+JDBC - cursor e paginação
+performance x memoria
+cursor -> mais rapido / consume mais memoria
+mais regitros vai ocupar mais memória
+
+paginacao -> otimiza memoria / executa mais consultas (lento)
+roda várias consultas, uma para cada página
+
+erros relacionados aos dados / ignorar registros invalidos
+adicionar no step
+.faultTolerant()
+.skip(Exception.class)
+.skipLimit(2) // aceitar somente dois erros
+
+Para reforçar o aprendizado a respeito da leitura em banco de dados com Spring Batch, 
+sugiro o seguinte artigo para leitura:
+https://docs.spring.io/spring-batch/docs/current/reference/html/readersAndWriters.html#database
+
+Você também pode customizar um leitor. 
+O exemplo abaixo mostra como criar um leitor que acessa um serviço REST para carregar dados:
+https://www.petrikainulainen.net/programming/spring-framework/spring-batch-tutorial-reading-information-from-a-rest-api/
+
+E se você quiser trabalhar com uma infraestrutura de filas assíncronas, 
+também dá usar um componente específico do Spring Batch:
+https://github.com/spring-tips/kafka-and-spring-batch/blob/master/src/main/java/com/example/bk/consumer/ConsumerApplication.java
+
