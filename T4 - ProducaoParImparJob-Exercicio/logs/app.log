@@ -1,0 +1,14 @@
+2020-08-21 13:56:16,490 INFO c.u.p.ProducaoParImparJobApplication [main] Starting ProducaoParImparJobApplication on DESKTOP-5MDAQJ8 with PID 9292 (started by danyl in D:\Udemy\SpringBatch\T4 - ProducaoParImparJob-Exercicio)
+2020-08-21 13:56:16,494 INFO c.u.p.ProducaoParImparJobApplication [main] No active profile set, falling back to default profiles: default
+2020-08-21 13:56:17,079 INFO o.s.c.a.ConfigurationClassEnhancer [main] @Bean method PropsConfig.config is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2020-08-21 13:56:17,381 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2020-08-21 13:56:18,792 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2020-08-21 13:56:18,993 INFO o.s.b.c.r.s.JobRepositoryFactoryBean [main] No database type set, using meta data indicating: MYSQL
+2020-08-21 13:56:19,411 INFO o.s.b.c.l.s.SimpleJobLauncher [main] No TaskExecutor has been set, defaulting to synchronous executor.
+2020-08-21 13:56:19,595 INFO c.u.p.ProducaoParImparJobApplication [main] Started ProducaoParImparJobApplication in 3.772 seconds (JVM running for 7.031)
+2020-08-21 13:56:20,254 INFO o.s.b.c.l.s.SimpleJobLauncher [main] Job: [SimpleJob: [name=imprimeParImparJob]] launched with the following parameters: [{nome=Danyllo, run.id=4, -spring.output.ansi.enabled=always}]
+2020-08-21 13:56:20,486 INFO o.s.b.c.j.SimpleStepHandler [main] Executing step: [imprimeParImparStep]
+2020-08-21 13:56:21,466 INFO o.s.b.c.s.AbstractStep [main] Step: [imprimeParImparStep] executed in 978ms
+2020-08-21 13:56:21,642 INFO o.s.b.c.l.s.SimpleJobLauncher [main] Job: [SimpleJob: [name=imprimeParImparJob]] completed with the following parameters: [{nome=Danyllo, run.id=4, -spring.output.ansi.enabled=always}] and the following status: [COMPLETED] in 1s309ms
+2020-08-21 13:56:21,654 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2020-08-21 13:56:21,687 INFO c.z.h.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.

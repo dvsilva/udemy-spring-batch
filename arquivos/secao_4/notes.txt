@@ -1,0 +1,23 @@
+configurar banco de dados em arquivos externos
+
+criar arquivo application.properties no disco local
+/etc/config/primeirojobspringbatch/config/application.properties
+
+criar classe de configuração retornando PropertySourcesPlaceholderConfigurer
+
+configurando multiplos bancos de dados
+
+PARA MULTIPLOS DATASOURCES UTILIZAR jdbcUrl em spring.datasource.jdbcUrl
+
+criar classe de configuração returnando DataSource
+
+criar metodo com qualificador @ConfigurationProperties(prefix = "spring.datasource")
+e return DataSourceBuilder.create().build();
+
+remover dependencia de log springbootstarter
+adicionar dependencia log4j2 ao projeto
+
+configurar log
+criar arquivo log4j.xml
+configurar no arquivo de propriedades o caminho do arquivo
+logging.config=D:/Udemy/SpringBatch/log4j.xml
