@@ -1,0 +1,51 @@
+processadores do spring batch
+itemprocessor -> process(I item)
+
+validatingItemProcessor -> validação de regras e filtra-lo
+compositeItemProcessor -> encadear diversos processadores (logica complexa dividida entre os diversos processadores)
+scriptItemProcessor -> arquivo (javascript) que recebe um item e retorna o processamento dele
+classifierCompositeItem Processor -> escolhe o processador ideal com base no item repassado
+
+adicionar dependencia do spring boot -> I/O - Validation
+
+processador de validação
+Validar o item lido e filtrá-lo caso ele seja inválido. Se ele for válido, será repassado sem modificações ao escritor.
+
+implementar processador
+@Bean
+public ItemProcessor<Cliente, Cliente> procesadorValidacaoProcessor() {
+	BeanValidatingItemProcessor<Cliente> processor = new BeanValidatingItemProcessor<>();
+	processor.setFilter(true); // nao impedir a execucao do batch (senao da erro e para)
+	return processor;
+}
+
+composite item processor
+Encadear diversos processadores para montar uma cadeia de responsabilidades.
+
+combinação de processadores precisa de:
+processor.afterPropertiesSet(); // setar propriedades no processador
+para setar propriedades do beanValidation
+
+processador de script
+Executar um script que recebe como argumento o item processado e gera como saída o resultado da execução do script. O script deve ser um arquivo escrito numa linguagem de script suportada, como Javascript, Groovy, Ruby, e Shell.
+
+return new ScriptItemProcessorBuilder<Cliente, Cliente>()
+	.language("nashorn").scriptSource(
+			"var email = item.getEmail();" + 
+			"var arquivoExiste = `ls | grep ${email}.txt`;" + 
+			"if (!arquivoExiste) item; else null;")
+	.build();
+
+habilitar shellscript d nashorn
+-Dnashorn.args=scripting
+
+processador classificador
+Selecionar o processador adequado dependendo do item lido.
+
+interessante para aplicar regra de negócio para diferentes objetos lidos
+
+documentação oficial
+https://docs.spring.io/spring-batch/docs/current/reference/html/readersAndWriters.html#itemProcessor
+
+
+
