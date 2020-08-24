@@ -1,0 +1,30 @@
+escritores do spring batch (itemwriter)
+
+método writer
+arquivos (flat e xml)
+banco de dados
+filas (jms e kafka)
+emails ..
+
+arquivos flat e banco de dados
+
+FlatFileItemWriter -> escreve de maneira formatada
+delimitador e tamanho fixo
+
+JDBCItemWriter (banco de dados)
+
+escrita em arquivo xml e json
+https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#StaxEventItemWriter
+https://docs.spring.io/spring-batch/docs/current/reference/html/index-single.html#code-jsonfileitemwriter-code
+
+JdbcBatchItemWriter -> lista de dados a serem escritos de uma vez em uma só transação
+escrita em lote, faz o insert na mesma transação
+
+CompositeItemWriter -> combinar escritores (JDBC e arquivo)
+
+Para reforçar o aprendizado a respeito da escrita em banco de dados com Spring Batch, você pode consultar as implementações existentes de escritores de banco do Spring Batch:
+https://docs.spring.io/spring-batch/docs/current/reference/html/readersAndWriters.html#databaseWriters
+
+E que tal se aventurar implementando uma delas? 
+Você pode modificar um dos projetos que vimos nessa seção para utilizar o HibernateItemWriter, por exemplo. 
+Não tenha medo de tentar, errar faz parte do aprendizado!

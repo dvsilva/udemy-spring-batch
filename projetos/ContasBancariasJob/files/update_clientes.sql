@@ -1,0 +1,1 @@
+UPDATE `app`.`cliente` SET `faixa_salarial` = null WHERE faixa_salarial > 100000;
